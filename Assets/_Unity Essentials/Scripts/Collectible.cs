@@ -3,6 +3,8 @@ using UnityEngine;
 public class NewMonoBehaviourScript : MonoBehaviour
 {
     public float rotationSpeed;
+
+    public GameObject onCollectEffect;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,4 +18,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
         transform.Rotate(0, 0.5f, 0);
 
     }
+
+    private void OnTriggerEnter(Collider other){
+        if (other.CompareTag("Player"))
+        {
+
+
+
+            // Destroy the collectible
+            Destroy(gameObject);
+            // instantiate the particle effect
+            Instantiate(onCollectEffect, transform.position, transform.rotation);
+        }
+    }
+
 }
